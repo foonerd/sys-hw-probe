@@ -34,21 +34,21 @@ cd sys-hw-probe
 ### Display orientation audit
 
 ```
-orientation-audit-volumio --help
-sudo orientation-audit-volumio
-sudo orientation-audit-volumio --install-deps
+./orientation-audit-volumio --help
+sudo ./orientation-audit-volumio
+sudo ./orientation-audit-volumio --install-deps
 ```
 
 Redirect full output to a log file for sharing:
 
 ```
-sudo orientation-audit-volumio > orientation.log 2>&1
+sudo ./orientation-audit-volumio.sh 2>&1 | tee /tmp/orientation-audit.log
 ```
 
-Then either upload `orientation.log` directly, or copy it to a pastebin service:
+Then either upload `orientation-audit.log` directly, or copy it to a pastebin service:
 
 ```
-curl -F 'file=@orientation.log' https://0x0.st
+curl -F 'file=@/tmp/orientation-audit.log' https://0x0.st
 ```
 
 ---
@@ -56,19 +56,13 @@ curl -F 'file=@orientation.log' https://0x0.st
 ### Wi-Fi diagnostics
 
 ```
-sudo wifi-info
+sudo ./wifi-info
 ```
 
-Redirect full output to a log file for sharing:
+Then upload `wifi-info.log` or copy it to a pastebin:
 
 ```
-sudo wifi-info > wifi.log 2>&1
-```
-
-Then upload `wifi.log` or copy it to a pastebin:
-
-```
-curl -F 'file=@wifi.log' https://0x0.st
+curl -F 'file=@/tmp/wifi-info.log' https://0x0.st
 ```
 
 What it reports (abridged):
