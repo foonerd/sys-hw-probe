@@ -1,7 +1,7 @@
 # sys-hw-probe
 
 Portable, vendor-neutral diagnostics and helper scripts for Linux kiosks and media-player systems  
-(e.g., Volumio builds) — focusing on **display orientation**, **audio (DACs/HATs)**,  
+(e.g., Volumio builds) - focusing on **display orientation**, **audio (DACs/HATs)**,  
 **Wi-Fi/BT**, **input devices**, and **power**.
 
 ---
@@ -11,7 +11,8 @@ Portable, vendor-neutral diagnostics and helper scripts for Linux kiosks and med
 - Zero-config, read-only probes that print actionable state and hints
 - Works on x86 and Raspberry Pi stacks (KMS/FKMS/legacy, DSI/DPI panels)
 - Clear summaries for DRM connectors, EDID, input devices, and compositor rotation
-- Friendly guidance to resolve common conflicts (fbcon vs kernel vs compositor)
+- Wi-Fi hardware inspection: bus type, vendor/device IDs, kernel driver, PHY bands
+- Friendly guidance to resolve common conflicts (fbcon vs kernel vs compositor, driver vs firmware)
 - CI-ready: ShellCheck, shfmt, and BATS smoke tests
 
 ---
@@ -33,19 +34,50 @@ cd sys-hw-probe
 ### Display orientation audit
 
 ```bash
-orientation-audit-volumio.sh --help
-sudo orientation-audit-volumio.sh
-sudo orientation-audit-volumio.sh --install-deps
+orientation-audit-volumio --help
+sudo orientation-audit-volumio
+sudo orientation-audit-volumio --install-deps
+```
+
+Redirect full output to a log file for sharing:
+
+```bash
+sudo orientation-audit-volumio > orientation.log 2>&1
+```
+
+Then either upload `orientation.log` directly, or copy it to a pastebin service:
+
+```bash
+curl -F 'file=@orientation.log' https://0x0.st
+```
+
+---
+
+### Wi-Fi diagnostics
+
+```bash
+sudo wifi-info
+```
+
+Redirect full output to a log file for sharing:
+
+```bash
+sudo wifi-info > wifi.log 2>&1
+```
+
+Then upload `wifi.log` or copy it to a pastebin:
+
+```bash
+curl -F 'file=@wifi.log' https://0x0.st
 ```
 
 What it reports (abridged):
 
-* Kernel cmdline flags (`fbcon=rotate`, `video=`), Plymouth presence
-* DRM connectors (status, modes, kernel panel_orientation)
-* EDID presence and summary (if `edid-decode` is installed)
-* Xorg/Xwayland rotation (via `xrandr`)
-* Input devices via `libinput`, `xinput`, evdev, and udev
-* Raspberry Pi stack detection (KMS/FKMS/legacy, DSI/DPI overlays) and config parsing
+* Bus type (USB / PCI / SDIO)
+* Device VID:PID and modalias
+* Bound kernel module and `modinfo` metadata
+* PHY interface modes, supported bands
+* HT/VHT/HE/EHT capabilities
 
 ---
 
@@ -56,12 +88,13 @@ The scripts try to degrade gracefully. For best results:
 * Core: `bash`, `grep`, `awk`, `sed`, `jq`
 * Display: `drm-info` or `libdrm-tests` (`modetest`), `x11-xserver-utils` (`xrandr`), `edid-decode`
 * Input: `libinput-tools`, `xinput`, `evtest`, `udev`
-* Misc: `usbutils`, `pciutils`
+* Wi-Fi: `iw`, `pciutils`, `usbutils`
+* Misc: `curl` (for pastebin upload)
 
 Install helpers automatically:
 
 ```bash
-sudo orientation-audit-volumio.sh --install-deps
+sudo orientation-audit-volumio --install-deps
 ```
 
 ---
@@ -73,8 +106,9 @@ sys-hw-probe/
 ├─ scripts/
 │  ├─ display/
 │  │  └─ orientation-audit-volumio.sh
+│  ├─ network/
+│  │  └─ wifi-info.sh
 │  ├─ audio/      # DACs/HATs, HDMI/DP audio (coming)
-│  ├─ network/    # Wi-Fi/BT, regulatory (coming)
 │  ├─ input/      # touch matrices, libinput/xinput (coming)
 │  └─ power/      # backlight, governors (coming)
 ├─ tests/
@@ -114,4 +148,4 @@ These tools are read-mostly. If you find a vulnerability, please open a private 
 
 ## License
 
-MIT © 2025 sys-hw-probe contributors — see [LICENSE](LICENSE).
+MIT © 2025 sys-hw-probe contributors - see [LICENSE](LICENSE).
