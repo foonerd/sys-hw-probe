@@ -1,0 +1,11 @@
+.DS_Store
+*.swp
+*.swo
+*.log
+*.tmp
+*.cache
+/.venv
+/node_modules
+/.idea
+/.vscode
+/tests/artifacts/
