@@ -13,9 +13,10 @@ find "$HERE/scripts" -maxdepth 2 -type f -name "*.sh" | while read -r f; do
   b="$(basename "$f")"
   # strip .sh for nicer UX when appropriate
   case "$b" in
-    orientation-audit-volumio.sh) linkname="orientation-audit-volumio.sh" ;;
-    *) linkname="$b" ;;
-  esac
+    orientation-audit-volumio.sh) linkname="orientation-audit-volumio" ;;
+    wifi-info.sh)                 linkname="wifi-info" ;;
+    *)                            linkname="$b" ;;
+  endac
   ln -sf "$f" "$PREFIX/$linkname"
   chmod +x "$f"
   echo "  -> $linkname"
