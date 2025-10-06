@@ -15,14 +15,14 @@ It collects details about wireless interfaces, bus type, drivers, and capabiliti
 
 1. Download and extract the script:
 
-   ```bash
+   ```
    wget https://github.com/YOURUSER/sys-hw-probe/raw/main/scripts/network/wifi-info.sh -O wifi-info.sh
    chmod +x wifi-info.sh
 ````
 
 2. Run the script with root permissions:
 
-   ```bash
+   ```
    sudo ./wifi-info.sh
    ```
 
@@ -56,13 +56,13 @@ You can share your log file using Pastebin:
 
 1. Install `pastebinit`:
 
-   ```bash
+   ```
    sudo apt-get install pastebinit
    ```
 
 2. Upload the log:
 
-   ```bash
+   ```
    pastebinit /tmp/wifi-info.log
    ```
 

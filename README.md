@@ -19,7 +19,7 @@ Portable, vendor-neutral diagnostics and helper scripts for Linux kiosks and med
 
 ## Quick start
 
-```bash
+```
 git clone https://github.com/foonerd/sys-hw-probe.git
 cd sys-hw-probe
 ./install.sh   # symlinks scripts into /usr/local/bin and checks basic deps
@@ -33,7 +33,7 @@ cd sys-hw-probe
 
 ### Display orientation audit
 
-```bash
+```
 orientation-audit-volumio --help
 sudo orientation-audit-volumio
 sudo orientation-audit-volumio --install-deps
@@ -41,13 +41,13 @@ sudo orientation-audit-volumio --install-deps
 
 Redirect full output to a log file for sharing:
 
-```bash
+```
 sudo orientation-audit-volumio > orientation.log 2>&1
 ```
 
 Then either upload `orientation.log` directly, or copy it to a pastebin service:
 
-```bash
+```
 curl -F 'file=@orientation.log' https://0x0.st
 ```
 
@@ -55,19 +55,19 @@ curl -F 'file=@orientation.log' https://0x0.st
 
 ### Wi-Fi diagnostics
 
-```bash
+```
 sudo wifi-info
 ```
 
 Redirect full output to a log file for sharing:
 
-```bash
+```
 sudo wifi-info > wifi.log 2>&1
 ```
 
 Then upload `wifi.log` or copy it to a pastebin:
 
-```bash
+```
 curl -F 'file=@wifi.log' https://0x0.st
 ```
 
@@ -93,7 +93,7 @@ The scripts try to degrade gracefully. For best results:
 
 Install helpers automatically:
 
-```bash
+```
 sudo orientation-audit-volumio --install-deps
 ```
 

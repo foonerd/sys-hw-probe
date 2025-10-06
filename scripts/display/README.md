@@ -6,7 +6,7 @@ Audit display orientation on Linux/Volumio systems (DRM/KMS, fbcon, xrandr/Wayla
 
 Optional helper packages (edid-decode, evtest, libinput-tools, drm-info, etc.):
 
-```bash
+```
 sudo ./orientation-audit-volumio.sh --install-deps
 ````
 
@@ -18,13 +18,13 @@ The script prints to **stdout**. To save a log, redirect output yourself:
 
 **Option A (recommended, see output live & save it):**
 
-```bash
+```
 sudo ./orientation-audit-volumio.sh 2>&1 | tee /tmp/orientation-audit.log
 ```
 
 **Option B (quiet, only save to file):**
 
-```bash
+```
 sudo ./orientation-audit-volumio.sh > /tmp/orientation-audit.log 2>&1
 ```
 
@@ -38,13 +38,13 @@ Your log will be at:
 
 Install a simple CLI paste tool (Debian/Ubuntu/Volumio-based):
 
-```bash
+```
 sudo apt-get update && sudo apt-get install -y pastebinit
 ```
 
 Then upload your log:
 
-```bash
+```
 pastebinit /tmp/orientation-audit.log
 ```
 
@@ -52,7 +52,7 @@ This command prints a URL you can share on the forum.
 
 > No log file handy? You can also stream directly:
 >
-> ```bash
+> ```
 > sudo ./orientation-audit-volumio.sh 2>&1 | pastebinit
 > ```
 
