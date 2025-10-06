@@ -19,7 +19,7 @@ Portable, vendor-neutral diagnostics and helper scripts for Linux kiosks and med
 ## Quick start
 
 ```bash
-git clone https://github.com/<your-username>/sys-hw-probe.git
+git clone https://github.com/foonerd/sys-hw-probe.git
 cd sys-hw-probe
 ./install.sh   # symlinks scripts into /usr/local/bin and checks basic deps
 ````
